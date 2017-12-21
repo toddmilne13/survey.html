@@ -5,35 +5,176 @@
 <html lang="en">
 <head>
     <title>Outfit Picker For You</title>
+        <h1>Take This Quick Survey to See What Style You Have</h1>
+        <script>
+      
+          public class MainClass extends javax.swing.JFrame implements Runnable {
+int width ;
+int height ;
+int ball;
+int ball2;
+int posX;
+int posY;
+int posX2;
+int posY2;
+int dx = 8;
+int dy = 8;//dx dy are varuiables for the movement of the ball
+int dx2 = -8;
+int dy2 = -8;
+Random rand = new Random();
+float r = rand.nextFloat();
+float g = rand.nextFloat();
+float b = rand.nextFloat();
+float r2 = rand.nextFloat();
+float g2 = rand.nextFloat();
+float b2 = rand.nextFloat();
+Color randomColor = new Color(r, g, b);
+Color randomColor2 = new Color(r2,g2,b2);
+Color c1 = Color.BLUE;
+Color c2 = Color.GREEN;
+Thread move = new Thread (this);
+
+
+public void paint(Graphics g) {
+    g.setColor(Color.BLACK);
+    g.fillRect(0,0,width,height);
+    g.setColor(c1);
+    g.fillOval(posX ,posY ,ball,ball); 
+    g.setColor(c2);
+    g.fillOval(posX2,posY2, ball2,ball2);
+
+    // sets starting position of Oval(ball)
+  }
+
+  public void run(){
+  try {
+        while (true){
+          posX=posX+dx;
+          posY=posY+dy;
+          posX2=posX2+dx2;
+          posY2=posY2+dy2;
+          //this is the speed of the ball
+          repaint();
+
+          move.sleep(100);
+
+
+          //This shows the ball on the screen
+                if (posY > height - ball)
+                {
+                    dy = dy *-1;
+                    c1 = randomColor;
+                  }
+                if ( posY <0 - ball)
+                {
+                    dy = dy *-1;
+                    c1 = randomColor;
+                  }
+                if(posX > width - ball)
+                {
+                    c1 = randomColor;
+                    dx = dx*-1; 
+                }
+                if(posX <0 - ball )
+                {
+                    c1 = randomColor;
+                    dx = dx*-1; 
+                }
+                // This code is for the first ball
+                if(posX > width - ball2 || posX <0 - ball2)
+                {
+                    dx2 = dx2*-1;
+                    c2 = randomColor2;
+                }
+                if(posY > height - ball2 || posY <0 - ball2)
+                {
+                    dy2 = dy2 *-1;
+                    c2 = randomColor2;
+                }
+      }
+    }
+  catch(Exception ex) {
+      ex.printStackTrace();
+
+  }
+}
+
+public MainClass() {
+    initComponents();
+    this.setResizable(false);
+    width = getWidth();
+    height = getHeight();
+    //this code creates the program dimensions
+    posX = width/2;
+    posY = height/2;
+    posX2 = width/2;
+    posY2 = height/2;
+    ball = 20;
+    ball2= 20; 
+                
+        </script>
 </head>
 <body>
+        <style>
+        
+        h1{
+             font-style: ariel;
+             font-size: 30px;
+             
+                };
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </style>
 <form action="#" method="post">
         <table>
             <tr>
-                <td>Favourite Color:</td>
-                <td><input type="text" name="color"/></td>
-            </tr>
-             <tr>
-                <td>Favourite Type of Shoes:</td>
-                <td><input type="text" name="shoes"/></td>
-            </tr>
-             <tr>
-                <td>Favourite Brands:</td>
-                <td><input type="text" name="color"/></td>
-            </tr>
-             <tr>
-                <td>Favourite Color:</td>
-                <td><input type="text" name="color"/></td>
-            </tr>    
+                <td>Name:</td>
+                <td><input type="text" name="name"/></td
+        
                 <td>Click One Style That You Like</td>
             <td>
-                <input type="radio" value="Formal" name="brand">formal
-                <input type="radio" value="Casual" name="brand">casual
-                <input type="radio" value="Smart" name="brand">smart   
-                <input type="radio" value="Fresh" name="brand">fresh
-                <input type="radio" value="90's" name="brand">oldschool
+                <input type="radio" value="Formal" name="brand">Formal
+                <input type="radio" value="Casual" name="brand">Casual
+                <input type="radio" value="Smart" name="brand">Smart   
+                <input type="radio" value="Fresh" name="brand">Fresh
+                <input type="radio" value="old-school" name="brand">Old School
                     
-             </td>
+            </td>
+                 <td>Click One Brand That You Like</td>
+            <td>
+                <input type="radio" value="Nike" name="brand">Nike
+                <input type="radio" value="Puma" name="brand">Puma
+                <input type="radio" value="Jack and Jones" name="brand">Jack and Jones, Next
+                <input type="radio" value="Supreme" name="brand">Supreme
+                <input type="radio" value="" name="brand">Gucci, Louis Vuitton
+                    
+            </td>
+                  <td>Click One Type of Shoe You Like</td>
+            <td>
+                <input type="radio" value="97s" name="brand">97s
+                <input type="radio" value="vans" name="brand">Vans
+                <input type="radio" value="Jordans" name="brand">Jordans
+                <input type="radio" value="yeezy" name="brand">Yeezys
+                <input type="radio" value="Leather Shoes" name="brand">Leather Shoes
+                    
+            </td>
     </form>
 </head>
 </html>
